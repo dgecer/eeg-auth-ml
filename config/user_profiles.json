@@ -1,0 +1,41 @@
+{
+    "S006": {
+        "name": "Gojo Satoru",
+        "address": "Tokyo Prefectural Jujutsu High School, Tokyo",
+        "phone": "+81 90 7777 0001",
+        "education": "Tokyo Jujutsu High - Special Grade Sorcerer",
+        "social_media": "@strongest",
+        "email": "gojo.satoru@jjk-tech.jp",
+        "physical": "Height: 190+ cm | Weight: 78 kg | BMI: 21.6 | White Hair | Blue Eyes"
+    },
+
+    "S050": {
+        "name": "Anakin Skywalker",
+        "address": "Jedi Temple District, Coruscant",
+        "phone": "+999 GALACTIC 1138",
+        "education": "Jedi Order Training Program",
+        "social_media": "@chosen.one",
+        "email": "anakin.skywalker@republic.gov",
+        "physical": "Height: 188 cm | Weight: 84 kg | BMI: 23.8 | Scar Over Right Eye"
+    },
+
+    "S069": {
+        "name": "Joker",
+        "address": "? - Gotham City",
+        "phone": "CLASSIFIED",
+        "education": "Self-Educated Chaos Theory",
+        "social_media": "@batman_fanclub",
+        "email": "joker@gothamchaos.net",
+        "physical": "Height: ? cm | Weight: ? kg | BMI: ? | Green Hair | Pale Skin (really pale)"
+    },
+
+    "S099": {
+        "name": "Ilay Riegrow",
+        "address": " ? ",
+        "phone": "+49 777 404 8891",
+        "education": " ? ",
+        "social_media": "@rick",
+        "email": " ? ",
+        "physical": "Height: 195+ cm | Weight: ? kg | BMI: ? | Silver - White hair | Dark Gray Eyes"
+    }
+}

@@ -5,9 +5,12 @@ import pandas as pd
 
 from scipy.signal import welch
 
+
 DATA_PATH = "data/raw/physionet_eeg"
 
 all_features = []
+
+WINDOW_SIZE_SECONDS = 5
 
 
 def bandpower(data, sf, band):
@@ -45,30 +48,55 @@ for subject_folder in os.listdir(DATA_PATH):
 
                 sf = raw.info['sfreq']
 
-                flattened_data = data.flatten()
+                channel_names = raw.ch_names
 
 
-                delta = bandpower(flattened_data, sf, (0.5, 4))
-                theta = bandpower(flattened_data, sf, (4, 8))
-                alpha = bandpower(flattened_data, sf, (8, 13))
-                beta = bandpower(flattened_data, sf, (13, 30))
+                window_size_samples = int(WINDOW_SIZE_SECONDS * sf)
+
+                total_samples = data.shape[1]
 
 
-                all_features.append({
-                    "subject": subject_folder,
-                    "delta": delta,
-                    "theta": theta,
-                    "alpha": alpha,
-                    "beta": beta
-                })
+                for start in range(0, total_samples - window_size_samples, window_size_samples):
+
+                    end = start + window_size_samples
+
+
+                    feature_dict = {
+                        "subject": subject_folder
+                    }
+
+
+                    for channel_index, channel_name in enumerate(channel_names):
+
+                        channel_data = data[channel_index][start:end]
+
+
+                        delta = bandpower(channel_data, sf, (0.5, 4))
+                        theta = bandpower(channel_data, sf, (4, 8))
+                        alpha = bandpower(channel_data, sf, (8, 13))
+                        beta = bandpower(channel_data, sf, (13, 30))
+
+
+                        feature_dict[f"{channel_name}_delta"] = delta
+                        feature_dict[f"{channel_name}_theta"] = theta
+                        feature_dict[f"{channel_name}_alpha"] = alpha
+                        feature_dict[f"{channel_name}_beta"] = beta
+
+
+                    all_features.append(feature_dict)
 
 
 df = pd.DataFrame(all_features)
 
-print("\n=== EXTRACTED EEG BAND FEATURES ===\n")
+
+print("\n=== EXTRACTED EEG FEATURES ===\n")
+
 print(df.head())
+
+print(f"\nTotal Samples Created: {len(df)}")
 
 
 df.to_csv("data/processed/features.csv", index=False)
+
 
 print("\nFeatures saved to data/processed/features.csv")
