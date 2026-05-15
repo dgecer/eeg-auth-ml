@@ -22,7 +22,8 @@ for subject_folder in os.listdir(DATA_PATH):
                     "file_path": full_path
                 })
 
-print("\nEDF FILES FOUND:\n")
+
+print("\n=== EDF FILES FOUND ===\n")
 
 for item in all_edf_files:
 
@@ -35,17 +36,18 @@ print(f"Total EDF Files: {len(all_edf_files)}")
 
 first_file = all_edf_files[0]["file_path"]
 
-print("\nLOADING FIRST EDF FILE...\n")
+print("\n=== LOADING FIRST EDF FILE ===\n")
 
 raw = mne.io.read_raw_edf(first_file, preload=True)
 
+
 print(raw)
 
-print("\nCHANNEL NAMES:")
+print("\n=== CHANNEL NAMES ===")
 print(raw.ch_names)
 
-print("\nSAMPLING RATE:")
+print("\n=== SAMPLING RATE ===")
 print(raw.info['sfreq'])
 
-print("\nDATA SHAPE:")
+print("\n=== DATA SHAPE ===")
 print(raw.get_data().shape)
